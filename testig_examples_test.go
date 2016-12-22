@@ -38,18 +38,27 @@ func Example() {
 
 func ExampleAssertPanicsWith() {
 
-	dontPanic := func() { return }
-	doPanic := func() { panic("oh no") }
+	panickyFunc := func() { panic("oh no") }
 
 	tt := testig.NewTestTester()
 
-	testig.AssertPanicsWith(tt, doPanic, "oh no", "got a scary panic")
+	testig.AssertPanicsWith(tt, panickyFunc, "oh no", "got a scary panic")
 	fmt.Println("Failed:", tt.Failed())
 
-	testig.AssertPanicsWith(tt, dontPanic, "any panic", "got another")
+	testig.AssertPanicsWith(tt, panickyFunc, "other panic", "got another")
+	fmt.Println("Failed:", tt.Failed())
+
+	// Also catches non-panics as you would expect.
+	dontPanic := func() { return }
+	tt = testig.NewTestTester()
+	fmt.Println("Failed:", tt.Failed())
+
+	testig.AssertPanicsWith(tt, dontPanic, "uh oh", "and another")
 	fmt.Println("Failed:", tt.Failed())
 
 	// Output:
+	// Failed: false
+	// Failed: true
 	// Failed: false
 	// Failed: true
 }
