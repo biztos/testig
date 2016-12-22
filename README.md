@@ -1,6 +1,6 @@
 # Testig -- Go Test Helpers
 
-[![GoDoc][b1]]([doc]) [![Build Status][b2]]([ci]) [![Coverage Status][b3]]([cov])
+[![GoDoc][b1]][doc] [![Build Status][b2]][ci] [![Coverage Status][b3]][cov]
 
 
 [b1]: https://godoc.org/github.com/biztos/testig?status.svg
