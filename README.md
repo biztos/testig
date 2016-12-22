@@ -19,9 +19,6 @@ Note that some of this stuff may eventually be merged into other packages
 (see below); or may be marked *deprecated as dumb* if I find something much
 better.
 
-Also please note that *test coverage is crap here* because testing the tester
-is kinda hard.
-
 ## Who?
 
 (c) 2016 Kevin Frost; BSD license (cf. the `LICENSE` file).

@@ -1,13 +1,20 @@
-// testig.go
+// testig.go - the basics, rigging, self-testability, etc.
 
-// Package testig contains helper functions useful in testing Go programs.
+// Package testig provides helpers for testing Go programs, including itself.
+// The spelling of the package name is intentional.
+//
+// LIMITATIONS
+//
+// There is currently no way for a TestTester to terminate a test function
+// under test.  At the moment it doesn't seem worth the extra complexity of
+// running tests in a separate goroutine, as the workaround also happens to
+// be a useful practice: helper functions must not have any ability to
+// continue after a Fail or Skip.
 package testig
 
 import (
 	"fmt"
 	"strings"
-
-	"github.com/stretchr/testify/assert"
 )
 
 // TT defines an interface implemented by both the TestTester and testing.T
@@ -54,10 +61,6 @@ func NewTestTester() *TestTester {
 	return &TestTester{
 		Logs: []string{},
 	}
-}
-
-func (tt *TestTester) private() {
-	// boo!
 }
 
 // Error, as in testing.T, is equivalent to Log followed by Fail.
@@ -113,6 +116,8 @@ func (tt *TestTester) Log(args ...interface{}) {
 		}
 		format := strings.Join(f, " ")
 		tt.Logf(format, args...)
+	} else {
+		tt.Logf("")
 	}
 }
 
@@ -145,38 +150,4 @@ func (tt *TestTester) Skipf(format string, args ...interface{}) {
 // Skipped, as in testing.T, reports whether the test was skipped.
 func (tt *TestTester) Skipped() bool {
 	return tt.skipped
-}
-
-// AssertPanicsWith fails with msg unless the function f panics with string
-// exp.
-func AssertPanicsWith(t TT, f func(), exp, msg string) {
-
-	panicked := false
-	got := ""
-	func() {
-		defer func() {
-			if r := recover(); r != nil {
-				panicked = true
-				got = fmt.Sprintf("%s", r)
-			}
-		}()
-		f()
-	}()
-
-	// NOTE: for testability without extra goroutines we make sure there is
-	// no posibility of the test continuing after a Fail.
-	// Also note: we lean on assert here because its failure messages are
-	// so nice. :-)
-	if !panicked {
-		assert.Fail(t, "Function did not panic.", msg)
-		t.FailNow()
-	} else if got != exp {
-		errMsg := fmt.Sprintf(
-			"Panic not as expected:\n  expected: %s\n    actual: %s",
-			exp, got)
-		assert.Fail(t, errMsg, msg)
-	}
-
-	// (In go testing, success is silent.)
-
 }
