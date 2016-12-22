@@ -1,6 +1,14 @@
 # Testig -- Go Test Helpers
 
-[![GoDoc](https://godoc.org/github.com/biztos/testig?status.svg)](https://godoc.org/github.com/biztos/testig)
+[![GoDoc][b1]]([doc]) [![Build Status][b2]]([ci]) [![Coverage Status][b3]]([cov])
+
+
+[b1]: https://godoc.org/github.com/biztos/testig?status.svg
+[doc]: https://godoc.org/github.com/biztos/testig
+[b2]: https://travis-ci.org/biztos/testig.svg?branch=master
+[ci]: https://travis-ci.org/biztos/testig
+[b3]: https://coveralls.io/repos/github/biztos/testig/badge.svg
+[cov]: https://coveralls.io/github/biztos/testig
 
 ## What?
 
