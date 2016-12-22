@@ -118,7 +118,7 @@ func (tt *TestTester) Log(args ...interface{}) {
 	// STUPID HACK WARNING: this may not work.
 	if len(args) > 0 {
 		f := make([]string, len(args))
-		for i, _ := range args {
+		for i := range args {
 			f[i] = "%v"
 		}
 		format := strings.Join(f, " ")
