@@ -4,8 +4,9 @@ go:
   - 1.5
   - tip
 install:
+  - go get github.com/stretchr/testify/assert
   - go get github.com/mattn/goveralls
 script:
   - go test -v -covermode=count -coverprofile=coverage.out
-  - $(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+  - $(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken=$COVERALLS_TOKEN
 secure: "tiiRrGniiJobsr+D/1tYGaLHmhE+nGYWGn3nVEKWxC9N/W1EwdUwfqL9F8RGxTG3BFp7XcwJWMXESb1m+zCrofePIC0LmpxIsnFSUPDo8W22Hs9JW5n2eZFV4KlR6w8Wl+MgLbeLGJALzgRi0vSNu7MdB83Aelc3tBiaQKLjo7wGQaauvN/uf67url+iCf3KDGviMRW1bmSOCfLSZzWtd5G7Kc2PO+yq7dZ1Y5kFLQWRGhSbGtQALWcexKv4E6oV+Q62C0uNQUz4HseRjDcpSJYKKksdH6TsU0KUdS8VFlSIMhCMhtN93amonA5lm+PHADaHwad2BO4SaMmX3lXAv8LCXMclIQSB2Yz7FdrDTPilUPDNto+r/AiHH3bOLqx40rZq6bJVQki66exWqVWwATbnwlC0XXyBpZmX1zG6y4tP7ZPdz8tdSfQbo5ZYCElHXq9gWxzeF3K07UT+GaRXVlDs5Sz8u7I87yZYct5P8KH0LpdMPEQsuCZxsMhH30Odyok4Bbiph3ki4tAxinZkMjr00Hz+/1ZCb6/5RRUwfnaFvhKR1Cd9Xq2dh56lBJQofNxtr6rXFLvFYHYkmhJcOGHtxm4T3PGoiAl8CxsfUEnzrfgH2ADJjihnBwXuiE3y6swZmEYRe+cey39qPW8uL79Vitw/LK2ZTWxG3kArFeo="
