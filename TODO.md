@@ -2,6 +2,8 @@
 
 (Arguably at least.)
 
+## Get a coverage report wired in -- via Travis or...?
+
 ## A utility to rig up placeholder test functions
 
 * Read all .go files in the given directory (recurse? probably not)
