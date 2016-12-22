@@ -1,11 +1,10 @@
-# testig
+# Testig -- Go Test Helpers
 
-Go Test Helpers
+[![GoDoc](https://godoc.org/github.com/biztos/testig?status.svg)](https://godoc.org/github.com/biztos/testig)
 
 ## What?
 
-Helper functions for Go testing.  May they help you thoroughly test your
-Go code!
+Helpers for Go testing.  May they help you thoroughly test your Go code!
 
 The name `testig` is a pun in two languages, as well as an experiment in
 misspelling.
@@ -13,7 +12,8 @@ misspelling.
 ## Why?
 
 I find myself with shared testing code across projects, which I do not wish
-to have scattered about like that.
+to have scattered about like that.  Also, you may find it useful in your own
+projects.
 
 Note that some of this stuff may eventually be merged into other packages
 (see below); or may be marked *deprecated as dumb* if I find something much
