@@ -63,50 +63,57 @@ func NewTestTester() *TestTester {
 	}
 }
 
-// Error, as in testing.T, is equivalent to Log followed by Fail.
+// Error mirrors the same-named function in testing.T: it is equivalent to Log
+// followed by Fail.
 func (tt *TestTester) Error(args ...interface{}) {
 	tt.Log(args...)
 	tt.Fail()
 
 }
 
-// Errorf, as in testing.T, is equivalent to Logf followed by Fail.
+// Errorf mirrors the same-named function in testing.T: it is equivalent to
+// Logf followed by Fail.
 func (tt *TestTester) Errorf(format string, args ...interface{}) {
 	tt.Logf(format, args...)
 	tt.Fail()
 }
 
-// Fail, as in testing.T, marks the function as having failed but continues
-// execution.
+// Fail mirrors the same-named function in testing.T: it marks the function as
+// having failed but continues execution.
 func (tt *TestTester) Fail() {
 	tt.failed = true
 }
 
-// FailNow, as in testing.T, marks the function as having failed and stops
-// its execution.
+// FailNow mirrors the same-named function in testing.T: it marks the
+// function as having failed and sets the TestTester's Stopped property to
+// true.
 func (tt *TestTester) FailNow() {
 	tt.Fail()
 	tt.Stopped = true // TODO: stop execution for real (exit goroutine)
 }
 
-// Failed, as in testing.T, reports whether the function has failed.
+// Failed mirrors the same-named function in testing.T: it reports whether the
+// function has failed.
 func (tt *TestTester) Failed() bool {
 	return tt.failed
 }
 
-// Fatal, as in testing.T, is equivalent to Log followed by FailNow.
+// Fatal mirrors the same-named function in testing.T: it is equivalent to Log
+// followed by FailNow.
 func (tt *TestTester) Fatal(args ...interface{}) {
 	tt.Log(args...)
 	tt.FailNow()
 }
 
-// Fatalf, as in testing.T, is equivalent to Logf followed by FailNow.
+// Fatalf mirrors the same-named function in testing.T: it is equivalent to
+// Logf followed by FailNow.
 func (tt *TestTester) Fatalf(format string, args ...interface{}) {
 	tt.Logf(format, args...)
 	tt.FailNow()
 }
 
-// Log, as in testing.T, records a log event a la Println.
+// Log mirrors the same-named function in testing.T: it records a log event a
+// la Println.
 func (tt *TestTester) Log(args ...interface{}) {
 	// STUPID HACK WARNING: this may not work.
 	if len(args) > 0 {
@@ -121,33 +128,37 @@ func (tt *TestTester) Log(args ...interface{}) {
 	}
 }
 
-// Logf, as in testing.T, records a log event a la Printf.
+// Logf mirrors the same-named function in testing.T: it records a log event
+// a la Printf.
 func (tt *TestTester) Logf(format string, args ...interface{}) {
 	msg := fmt.Sprintf(format, args...)
 	tt.Logs = append(tt.Logs, msg)
 }
 
-// Skip, as in testing.T, is equivalent to Log followed by SkipNow.
+// Skip mirrors the same-named function in testing.T: it is equivalent to Log
+// followed by SkipNow.
 func (tt *TestTester) Skip(args ...interface{}) {
 	tt.Log(args...)
 	tt.SkipNow()
 }
 
-// SkipNow, as in testing.T, marks the test as having been skipped and stops
-// its execution.
+// SkipNow mirrors the same-named function in testing.T: it marks the test as
+// having been skipped and sets the TestTester's Stopped property to true.
 func (tt *TestTester) SkipNow() {
 	tt.skipped = true
 	tt.Stopped = true // TODO: stop execution for real (exit goroutine)
 
 }
 
-// Skipf, as in testing.T, is equivalent to Logf followed by SkipNow.
+// Skipf mirrors the same-named function in testing.T: it is equivalent to
+// Logf followed by SkipNow.
 func (tt *TestTester) Skipf(format string, args ...interface{}) {
 	tt.Logf(format, args...)
 	tt.SkipNow()
 }
 
-// Skipped, as in testing.T, reports whether the test was skipped.
+// Skipped mirrors the same-named function in testing.T: it reports whether
+// the test was skipped.
 func (tt *TestTester) Skipped() bool {
 	return tt.skipped
 }

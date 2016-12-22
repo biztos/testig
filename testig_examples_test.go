@@ -8,13 +8,13 @@ import (
 	"github.com/biztos/testig"
 )
 
-var DETERMINISTIC_FAILURE = true
+var DeterministicFailure = true
 
 func Example() {
 
 	// This will of course also accept a *testing.T as its argument.
 	AwesomeTestingHelper := func(t testig.TT) {
-		if DETERMINISTIC_FAILURE {
+		if DeterministicFailure {
 			t.Fatal("uh-oh spaghettio!")
 		} else {
 			t.Log("Things are looking up!")
