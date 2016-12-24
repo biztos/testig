@@ -2,7 +2,10 @@
 
 (Arguably at least.)
 
-## Get a coverage report wired in -- via Travis or...?
+## Accept a Regexp *or* a string for AssertPanicsRegexp
+
+This is generally a good idea (cf. `testify/assert`) but it's not a priority,
+as I personally never use that form.
 
 ## A utility to rig up placeholder test functions
 
